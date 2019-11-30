@@ -7,7 +7,7 @@ module.exports = class TemplateCmd extends Command {
             name: 'uwu',
             aliases: ['uwufy'],
             group: 'fun',
-            memberName: 'test',
+            memberName: 'uwu',
             description: 'uwu',
             args: [
                 {

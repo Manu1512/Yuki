@@ -4,11 +4,11 @@ const { Command } = require('discord.js-commando');
 module.exports = class Random extends Command {
     constructor(client) {
         super(client, {
-            name: 'test',
-            aliases: ['test', 't'],
+            name: 'random',
+            aliases: ['rnd'],
             group: 'misc',
-            memberName: 'test',
-            description: 'Test Command',
+            memberName: 'random',
+            description: 'Würfelt eine Zufallszahl',
             args: [
                 {
                     key: 'min',
