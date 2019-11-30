@@ -1,6 +1,6 @@
 {
-  "name": "commandotemplate",
-  "version": "0.0.1",
+  "name": "yuki",
+  "version": "1.0.0",
   "description": "Musicbot for Discord",
   "main": "index.js",
   "scripts": {

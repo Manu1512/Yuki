@@ -49,7 +49,7 @@ function playSong(connection, msg) {
     })
 }
 
-module.exports = class TemplateCmd extends Command {
+module.exports = class Play extends Command {
     constructor(client) {
         super(client, {
             name: 'play',
@@ -57,11 +57,14 @@ module.exports = class TemplateCmd extends Command {
             group: 'music',
             memberName: 'play',
             description: 'Spielt ein beliebiges YouTube-Video im VoiceChannel ab oder fügt eines zur Queue hinzu.',
+            guildOnly: true,
+            clientPermissions: ['CONNECT', 'SPEAK'],
+            userPermissions: ['CONNECT'],
             args: [
                 {
                     key: 'link',
                     prompt: 'Damit ich dir Musik abspielen kann, brauche ich einen Link.',
-                    type: 'string'
+                    type: 'string',
                 },
             ],
         });

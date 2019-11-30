@@ -12,7 +12,7 @@ function checkTitle(links) {
     });
 }
 
-module.exports = class TemplateCmd extends Command {
+module.exports = class Queue extends Command {
     constructor(client) {
         super(client, {
             name: 'queue',
@@ -20,6 +20,7 @@ module.exports = class TemplateCmd extends Command {
             group: 'music',
             memberName: 'queue',
             description: 'Listet alle Lieder auf, die sich momentan in der Queue befinden.',
+            guildOnly: true,
         });
     }
 

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 
-module.exports = class TemplateCmd extends Command {
+module.exports = class Leave extends Command {
     constructor(client) {
         super(client, {
             name: 'leave',
@@ -9,6 +9,7 @@ module.exports = class TemplateCmd extends Command {
             group: 'music',
             memberName: 'leave',
             description: 'Stoppt die Musik und verlässt den VoiceChannel',
+            guildOnly: true,
         });
     }
 

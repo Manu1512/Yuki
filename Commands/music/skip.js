@@ -4,7 +4,7 @@ const { Command } = require('discord.js-commando');
 const YTDL = require('ytdl-core')
 const Play = require('./play')
 
-module.exports = class TemplateCmd extends Command {
+module.exports = class Skip extends Command {
     constructor(client) {
         super(client, {
             name: 'skip',
@@ -12,6 +12,7 @@ module.exports = class TemplateCmd extends Command {
             group: 'music',
             memberName: 'skip',
             description: 'Überspringt das momentane Lied',
+            guildOnly: true,
         });
     }
 
