@@ -8,11 +8,11 @@ module.exports = class TemplateCmd extends Command {
             aliases: ['uwufy'],
             group: 'fun',
             memberName: 'uwu',
-            description: 'uwu',
+            description: 'Twanswates evewy Text into uwu. Wowks best with engwish.',
             args: [
                 {
                     key: 'text',
-                    prompt: 'Twanswates evewy Text into uwu. Wowks best with engwish.',
+                    prompt: 'Ich bwauche einyen text UwU',
                     type: 'string',
                 },
             ],

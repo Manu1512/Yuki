@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 
+const functions = require('../../Misc/functions')
+
 module.exports = class Random extends Command {
     constructor(client) {
         super(client, {
@@ -25,7 +27,7 @@ module.exports = class Random extends Command {
     }
 
     run(msg, { min, max }) {
-        var rndNumber = methods.randomInt(min, max)
+        var rndNumber = functions.randomInt(min, max)
 
         const embed = new Discord.RichEmbed()
             .setColor(color)
