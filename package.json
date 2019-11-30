@@ -1,0 +1,20 @@
+{
+  "name": "commandotemplate",
+  "version": "0.0.1",
+  "description": "Musicbot for Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js debug",
+    "start": "nodemon index.js"
+  },
+  "author": "Manu1512",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "discord.js-commando": "^0.10.0",
+    "dotenv": "^8.2.0",
+    "ffmpeg": "^0.0.4",
+    "opusscript": "^0.0.7",
+    "ytdl-core": "^1.0.1"
+  }
+}
