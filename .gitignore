@@ -1,5 +1,6 @@
 # folders
-node_modules
+node_modules/*
+!node_modules/discord.js-commando
 
 # json
 package-lock.json
