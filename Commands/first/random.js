@@ -8,7 +8,7 @@ module.exports = class Random extends Command {
         super(client, {
             name: 'random',
             aliases: ['rnd'],
-            group: 'misc',
+            group: 'first',
             memberName: 'random',
             description: 'Würfelt eine Zufallszahl',
             args: [
@@ -28,6 +28,11 @@ module.exports = class Random extends Command {
 
     run(msg, { min, max }) {
         var rndNumber = functions.randomInt(min, max)
+
+        if(max < min) {
+            msg.reply('Das Maximum kann nicht kleiner als das Minimum sein.');
+            return;
+        }
 
         const embed = new Discord.RichEmbed()
             .setColor(color)

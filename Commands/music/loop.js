@@ -11,10 +11,11 @@ module.exports = class Loop extends Command {
             group: 'music',
             memberName: 'loop',
             description: 'Spielt das aktuelle Lied im Loop ab.',
+            guildOnly: true,
             args: [
                 {
                     key: 'argument',
-                    prompt: 'Soll ich den Loop starten oder beenden?',
+                    prompt: 'Soll ich den Loop starten (\'start\') oder beenden (\'stop\')?',
                     type: 'string',
                     oneOf: ['start', 'stop'],
                 },

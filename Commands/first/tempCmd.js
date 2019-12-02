@@ -6,7 +6,7 @@ module.exports = class TemplateCmd extends Command {
         super(client, {
             name: 'test',
             aliases: ['test', 't'],
-            group: 'misc',
+            group: 'first',
             memberName: 'test',
             description: 'Test Command',
         });

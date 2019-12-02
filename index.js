@@ -3,18 +3,20 @@ const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 
 const Config = require('./config.json');
+const Package = require('./package.json');
 
-require('dotenv/config')
+require('dotenv/config');
 var token = process.env.TOKEN;
 var ownerId = process.env.owner;
 var prefix = process.env.prefix || Config.prefix;
+var version = Package.version;
 
 global.color = Config.color;
 
-// Für Heroku
-const http = require('http')
-const port = process.env.PORT || 3000
-http.createServer().listen(port)
+// Heroku
+const http = require('http');
+const port = process.env.PORT || 3000;
+http.createServer().listen(port);
 
 const client = new CommandoClient({
     commandPrefix: prefix,
@@ -24,8 +26,7 @@ const client = new CommandoClient({
 client.registry
     .registerDefaultTypes()
     .registerGroups([
-        ['first', 'First'],
-        ['misc', 'Misc'],
+        ['first', 'Misc'],
         ['fun', 'Fun'],
         ['anime', 'Anime'],
         ['music', 'Music']
@@ -41,6 +42,7 @@ client.registry
 
 client.once('ready', () => {
     console.log(`Test bot ready.`);
+    client.user.setActivity(`${prefix} || ${version}`);
 });
 
 client.on('error', console.error);

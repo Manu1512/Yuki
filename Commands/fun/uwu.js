@@ -22,8 +22,7 @@ module.exports = class uwu extends Command {
 
     run(msg, { text }) {
         let uwu = text;
-        let emotes = ['✧w✧', 'UwU', '( ᴜ ω ᴜ )', '(⁄˘⁄ ⁄ ω⁄ ⁄ ˘⁄)♡', '( ᴜ ω ᴜ )'];
-        let randomEmote = Functions.randomInt(0, emotes.length - 1);
+        let emotes = ['✧w✧', 'UwU', '( ᴜ ω ᴜ )', '(⁄˘⁄ ⁄ ω⁄ ⁄˘⁄)♡', '( ᴜ ω ᴜ )', '(＝⌒▽⌒＝)', '(〃＾▽＾〃)'];
 
         uwu = uwu.replace(/(?:r|l)/g, 'w');
         uwu = uwu.replace(/(?:R|L)/g, 'W');
@@ -32,7 +31,13 @@ module.exports = class uwu extends Command {
         uwu = uwu.replace(/N([AEIOU])/g, 'NY$1');
         uwu = uwu.replace(/ove/g, 'uv');
 
-        uwu = uwu.replace(/(?:\!|\.)/g, emotes[randomEmote]);
+        var count = uwu.match(/(?:\!|\.)/g).length;
+
+        // Verhindert, dass immer der selbe Emote verwendet wird
+        for (let i = 0; i < count; i++) {
+            let randomEmote = Functions.randomInt(0, emotes.length - 1);
+            uwu = uwu.replace(/(?:\!|\.)/, ` ${emotes[randomEmote]}`);
+        }
 
         msg.channel.send(uwu);
     }
