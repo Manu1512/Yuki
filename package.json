@@ -1,6 +1,6 @@
 {
   "name": "yuki",
-  "version": "1.0.1",
+  "version": "1.19.3",
   "description": "Musicbot for Discord",
   "main": "index.js",
   "scripts": {

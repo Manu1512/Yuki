@@ -41,7 +41,7 @@ client.registry
 
 client.once('ready', () => {
     console.log(`Test bot ready.`);
-})
+});
 
 client.on('error', console.error);
 

@@ -33,12 +33,15 @@ module.exports = class Queue extends Command {
                 msg.reply('Es befinden sich momentan keine Lieder in der Queue.')
             }
             else {
+                // Für jeden Link in der Queue den Titel abfragen
                 server.queue.forEach(element => {
                     ytdl.getBasicInfo(element, (err, info) => {
                         queueText.push(info.title);
                     });
                 });
 
+                // Eine Sekunde warten, bevor der Text ausgegeben wird
+                // YouTube-Abfragen benötigen eine gewisse Zeit, um Informationen bereitstellen zu können
                 setTimeout(() => {
                     var embedText = queueText.join('\n')
 
@@ -47,6 +50,9 @@ module.exports = class Queue extends Command {
                         .addField('Queue', embedText)
 
                     msg.reply(embed)
+
+                    // Array zurücksetzen
+                    queueText.length = 0;
                 }, 1000);
             }
         }

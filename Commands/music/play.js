@@ -3,6 +3,7 @@ const { Command } = require('discord.js-commando');
 const ytdl = require('ytdl-core');
 
 global.servers = [];
+global.currentLink;
 
 function playSong(connection, msg) {
     var server = servers[msg.guild.id];
@@ -26,7 +27,11 @@ function playSong(connection, msg) {
         msg.channel.send(infoEmbed);
     })
 
-    server.queue.shift();
+    // Speichere den Link im Index[0] ab für .unshift (loop.js)
+    currentLink = server.queue[0];
+
+    // Wenn loop aktiviert -> shift ignorieren
+    if(!server.loop) server.queue.shift();
 
     server.dispatcher.on('end', function() {
         if(server.queue[0]) {
@@ -71,6 +76,8 @@ module.exports = class Play extends Command {
     }
 
     run(msg, { link }) {
+        if(!link) return;
+
         // Prüfen, ob User in einem VoiceChannel ist
         if(!msg.member.voiceChannel) {
             const embed = new Discord.RichEmbed()
@@ -83,8 +90,9 @@ module.exports = class Play extends Command {
 
         // Wenn der Server noch nicht im Array gespeichert ist -> Hinzufügen
         if(!servers[msg.guild.id]) servers[msg.guild.id] = {
-            queue: []
-        }
+            queue: [],
+            loop: false
+        };
 
         var server = servers[msg.guild.id];
 
@@ -93,7 +101,9 @@ module.exports = class Play extends Command {
 
         const embed = new Discord.RichEmbed()
             .setColor(color)
-            .setDescription('Lied wurde in die Queue hinzugefügt.')
+            .setDescription('Ich habe das Lied für dich in die Queue hinzugefügt.')
+
+        msg.channel.send(embed);
 
         if(!msg.guild.voiceConnection) msg.member.voiceChannel.join().then(function(connection) {
             playSong(connection, msg);

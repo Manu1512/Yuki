@@ -19,7 +19,7 @@ module.exports = class Random extends Command {
                 },
                 {
                     key: 'max',
-                    prompt: 'Welche Zahl soll das Minimum sein?',
+                    prompt: 'Welche Zahl soll das Maximum sein?',
                     type: 'integer',
                 },
             ],
