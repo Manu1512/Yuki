@@ -2,13 +2,26 @@ const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 const ytdl = require('ytdl-core');
 
+const Functions = require('../../Misc/functions');
+
 global.servers = [];
 global.currentLink;
 
 function playSong(connection, msg) {
     var server = servers[msg.guild.id];
 
-    server.dispatcher = connection.playStream(ytdl(server.queue[0], { filter: "audioonly" }));
+    try {
+        server.dispatcher = connection.playStream(ytdl(server.queue[0], { filter: "audioonly" }));
+    } catch {
+        console.log('error: Something went wrong while downloading from YouTube');
+        msg.reply(`Irgendetwas hat beim Download des Videos nicht geklappt. すいません (ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣ ू)\n` + 
+                  `Bitte versuchs nochmal! Fehlerhafter Link: ${server.queue[0]}`);
+
+        server.queue.shift();
+        connection.disconnect();
+
+        return;
+    }
 
     // Video Info auslesen
     ytdl.getBasicInfo(server.queue[0], (err, info) => {
@@ -35,11 +48,6 @@ function playSong(connection, msg) {
 
     server.dispatcher.on('end', function() {
         if(server.queue[0]) {
-            // const nextEmbed = new discordjs.RichEmbed()
-            //     .setColor(color)
-            //     .addDescription('Ich spiel das nächste Lied ab.')
-        
-            // msg.channel.send(nextEmbed)
             playSong(connection, msg);
         } 
         else {
@@ -78,6 +86,12 @@ module.exports = class Play extends Command {
     run(msg, { link }) {
         if(!link) return;
 
+        // Überprüft den Link auf eine YouTube URL
+        if(!Functions.validateYouTubeUrl(link)) {
+            msg.reply('Ich kann leider keine gültige YouTube URL darin erkennen.');
+            return;
+        }
+
         // Prüfen, ob User in einem VoiceChannel ist
         if(!msg.member.voiceChannel) {
             const embed = new Discord.RichEmbed()
@@ -105,6 +119,7 @@ module.exports = class Play extends Command {
 
         msg.channel.send(embed);
 
+        // VoiceChannel betreten und playSong() abrufen
         if(!msg.guild.voiceConnection) msg.member.voiceChannel.join().then(function(connection) {
             playSong(connection, msg);
         });

@@ -1,6 +1,6 @@
 {
   "name": "yuki",
-  "version": "1.19.3",
+  "version": "1.19.4",
   "description": "Musicbot for Discord",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,10 @@
   },
   "author": "Manu1512",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Manu1512/Yuki.git"
+  },
   "dependencies": {
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",

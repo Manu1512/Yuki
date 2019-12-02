@@ -4,14 +4,14 @@ const path = require('path');
 
 const Config = require('./config.json');
 
+require('dotenv/config')
 var token = process.env.TOKEN;
 var ownerId = process.env.owner;
-var prefix = Config.prefix;
+var prefix = process.env.prefix || Config.prefix;
 
 global.color = Config.color;
 
 // Für Heroku
-require('dotenv/config')
 const http = require('http')
 const port = process.env.PORT || 3000
 http.createServer().listen(port)

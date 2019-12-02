@@ -33,27 +33,33 @@ module.exports = class Queue extends Command {
                 msg.reply('Es befinden sich momentan keine Lieder in der Queue.')
             }
             else {
-                // Für jeden Link in der Queue den Titel abfragen
-                server.queue.forEach(element => {
-                    ytdl.getBasicInfo(element, (err, info) => {
-                        queueText.push(info.title);
+                try {
+                    // Für jeden Link in der Queue den Titel abfragen
+                    // Rückwärts, da die Queue sonst verkehrt ausgegeben wird
+                    server.queue.slice().reverse().forEach(element => {
+                        ytdl.getBasicInfo(element, (err, info) => {
+                            queueText.push(info.title);
+                        });
                     });
-                });
 
-                // Eine Sekunde warten, bevor der Text ausgegeben wird
-                // YouTube-Abfragen benötigen eine gewisse Zeit, um Informationen bereitstellen zu können
-                setTimeout(() => {
-                    var embedText = queueText.join('\n')
+                    // Eine Sekunde warten, bevor der Text ausgegeben wird
+                    // YouTube-Abfragen benötigen eine gewisse Zeit, um Informationen bereitstellen zu können
+                    setTimeout(() => {
+                        var embedText = queueText.join('\n')
 
-                    const embed = new Discord.RichEmbed()
-                        .setColor(color)
-                        .addField('Queue', embedText)
+                        const embed = new Discord.RichEmbed()
+                            .setColor(color)
+                            .addField('Queue', embedText)
 
-                    msg.reply(embed)
+                        msg.channel.send(embed);
 
-                    // Array zurücksetzen
-                    queueText.length = 0;
-                }, 1000);
+                        // Array zurücksetzen
+                        queueText.length = 0;
+                    }, 1000);
+                } catch {
+                    msg.reply('Ich kann den Titel von einem Link in dieser Liste nicht abfragen.\nScheinbar ist er nicht gültig.');
+                }
+                
             }
         }
         else msg.reply('Ich befinde mich momentan nicht in einem VoiceChannel.')

@@ -42,10 +42,10 @@ module.exports = class Loop extends Command {
                 .setColor(color)
                 .setDescription('Ich spiele das Lied im Loop ab!');
 
-            msg.reply(embed);
+            msg.channel.send(embed);
         } else if(varStartStop == 'stop') {
             if(!server.loop) {
-                msg.reply('Der Loop läuft momentan nicht. Meintest du \'start\'?');
+                msg.channel.send('Der Loop läuft momentan nicht. Meintest du \'start\'?');
                 return;
             }
 
@@ -56,7 +56,7 @@ module.exports = class Loop extends Command {
                 .setColor(color)
                 .setDescription('Ich beende den Loop für dich und spiele das nächste Lied in der Queue ab.');
 
-            msg.reply(embed);
+            msg.channel.send(embed);
         }
     }
 }
