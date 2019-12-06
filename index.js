@@ -25,6 +25,7 @@ const client = new CommandoClient({
     owner: ownerId
 });
 
+// Discord.js-Commando einrichten
 client.registry
     .registerDefaultTypes()
     .registerGroups([
@@ -37,34 +38,41 @@ client.registry
     .registerDefaultCommands()
     .registerCommandsIn(path.join(__dirname, 'Commands'));
 
+// Wenn der Bot 'ready' ist
 client.once('ready', () => {
     console.log(`Bot '${botName}' ready. Version ${version}\n`);
     console.log('Connected guilds: ');
 
-    let serverIndex = 0;
-
+    // Alle Guilds auflisten
     client.guilds.forEach(guild => {
         console.log(`${guild.name}: ${guild.id}`);
 
-        // Alle Server in ein Array speichern (Neu)
-        // if(!servers[guild.id]) servers[serverIndex] = {
-        //     lang: 'de'
-        // };
-
         // Alle Server in ein Array speichern mithilfe der Server-ID
-        // Für Kompatibilität - Hauptsächlich 'music'
         if(!servers[guild.id]) servers[guild.id] = {
             queue: [],
-            loop: false,
-            lang: 'de'
+            loop: false
         };
-
-        // serverIndex++;
     });
 
+    // Status setzen
     client.user.setActivity(`${prefix} || ${version}`);
 });
 
 client.on('error', console.error);
 
-client.login(token);
+// Verbindung zur Datenbank herstellen
+const mongoose = require('mongoose');
+const mongodbURL = process.env.MONGODB;
+(async () => {
+    await mongoose.connect(mongodbURL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    }, err => {
+        if(err) return console.log(err);
+        console.log('Connected to MongoDB');
+    });
+
+    // Bei Discord einloggen
+    return client.login(token);
+})();

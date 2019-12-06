@@ -1,6 +1,6 @@
 {
   "name": "yuki",
-  "version": "1.19.6",
+  "version": "1.19.7",
   "description": "Bot for Discord",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "opusscript": "^0.0.7",
     "superagent": "^5.1.2",
     "tenorjs": "^1.0.7",
-    "ytdl-core": "^1.0.1"
+    "ytdl-core": "^1.0.1",
+    "mongoose": "^5.7.13"
   }
 }
