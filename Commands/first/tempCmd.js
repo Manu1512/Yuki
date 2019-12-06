@@ -8,7 +8,8 @@ module.exports = class TemplateCmd extends Command {
             aliases: ['test', 't'],
             group: 'first',
             memberName: 'test',
-            description: 'Test Command',
+            description: 'Ein Befehl, um den Bot zu testen',
+            userPermissions: ['ADMINISTRATOR'],
         });
     }
 

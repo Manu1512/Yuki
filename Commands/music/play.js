@@ -4,7 +4,6 @@ const ytdl = require('ytdl-core');
 
 const Functions = require('../../Misc/functions');
 
-global.servers = [];
 global.currentLink;
 
 function playSong(connection, msg) {
@@ -69,7 +68,7 @@ module.exports = class Play extends Command {
             aliases: ['play'],
             group: 'music',
             memberName: 'play',
-            description: 'Spielt ein beliebiges YouTube-Video im VoiceChannel ab oder fügt eines zur Queue hinzu.',
+            description: 'Spielt ein beliebiges YouTube-Video im VoiceChannel ab oder fügt eines zur Queue hinzu',
             guildOnly: true,
             clientPermissions: ['CONNECT', 'SPEAK'],
             userPermissions: ['CONNECT'],
@@ -103,10 +102,10 @@ module.exports = class Play extends Command {
         }
 
         // Wenn der Server noch nicht im Array gespeichert ist -> Hinzufügen
-        if(!servers[msg.guild.id]) servers[msg.guild.id] = {
-            queue: [],
-            loop: false
-        };
+        // if(!servers[msg.guild.id]) servers[msg.guild.id] = {
+        //     queue: [],
+        //     loop: false
+        // };
 
         var server = servers[msg.guild.id];
 

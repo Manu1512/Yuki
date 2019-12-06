@@ -9,7 +9,7 @@ module.exports = class uwu extends Command {
             aliases: ['uwufy'],
             group: 'fun',
             memberName: 'uwu',
-            description: 'Twanswates evewy Text into uwu. Wowks best with engwish.',
+            description: 'Twanswates evewy Text into uwu. Wowks best with engwish',
             args: [
                 {
                     key: 'text',

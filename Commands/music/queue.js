@@ -19,7 +19,7 @@ module.exports = class Queue extends Command {
             aliases: ['queue'],
             group: 'music',
             memberName: 'queue',
-            description: 'Listet alle Lieder auf, die sich momentan in der Queue befinden.',
+            description: 'Listet alle Lieder auf, die sich momentan in der Queue befinden',
             guildOnly: true,
         });
     }

@@ -1,7 +1,7 @@
 {
   "name": "yuki",
-  "version": "1.19.5",
-  "description": "Musicbot for Discord",
+  "version": "1.19.6",
+  "description": "Bot for Discord",
   "main": "index.js",
   "scripts": {
     "test": "nodemon index.js debug",
@@ -14,11 +14,14 @@
     "url": "https://github.com/Manu1512/Yuki.git"
   },
   "dependencies": {
+    "date.format": "^1.1.2",
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
     "dotenv": "^8.2.0",
     "ffmpeg": "^0.0.4",
     "opusscript": "^0.0.7",
+    "superagent": "^5.1.2",
+    "tenorjs": "^1.0.7",
     "ytdl-core": "^1.0.1"
   }
 }

@@ -10,7 +10,7 @@ module.exports = class Loop extends Command {
             name: 'loop',
             group: 'music',
             memberName: 'loop',
-            description: 'Spielt das aktuelle Lied im Loop ab.',
+            description: 'Spielt das aktuelle Lied im Loop ab',
             guildOnly: true,
             args: [
                 {

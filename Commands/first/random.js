@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 
-const functions = require('../../Misc/functions')
+const functions = require('../../Misc/functions');
 
 module.exports = class Random extends Command {
     constructor(client) {
@@ -10,7 +10,7 @@ module.exports = class Random extends Command {
             aliases: ['rnd'],
             group: 'first',
             memberName: 'random',
-            description: 'Würfelt eine Zufallszahl',
+            description: 'Würfelt eine Zufallszahl zwischen zwei Zahlen',
             args: [
                 {
                     key: 'min',
@@ -28,15 +28,20 @@ module.exports = class Random extends Command {
 
     run(msg, { min, max }) {
         var rndNumber = functions.randomInt(min, max)
+        var server = servers[msg.guild.id];
 
-        if(max < min) {
-            msg.reply('Das Maximum kann nicht kleiner als das Minimum sein.');
+        if(max <= min) {
+            if(server.lang == 'de') msg.reply('Das Maximum kann nicht kleiner oder gleich als das Minimum sein.');
+            else if(server.lang == 'en') msg.reply('The maximum can not be less than or equal to the minimum.');
             return;
         }
 
         const embed = new Discord.RichEmbed()
             .setColor(color)
             .setDescription(`Ich habe ${rndNumber} für dich gewürfelt.`)
+
+        if(server.lang == 'de') embed.setDescription(`Ich habe ${rndNumber} für dich gewürfelt.`);
+        else if(server.lang == 'en') msg.reply(`I rolled ${rndNumber} for you.`);
 
         msg.reply(embed)
     }
